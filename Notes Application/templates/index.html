@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" class="index">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="UNCC Notes App">
+        <title>UNCC Notes App</title>
+        <!-- styles -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    </head>
+    <body>
+        <h1>Welcome to PRAIR Notes {% if user %}{{user}}{% endif %}!</h1>
+
+        {% if user %}
+            <nav class="nav">
+                <a href="{{ url_for('logout') }}">Logout</a>
+            </nav>
+        {% else %}
+            <nav>
+                <a href="{{ url_for('login') }}">Sign In</a> ||
+                <a href="{{ url_for('register') }}">Register</a>
+            </nav>
+        {% endif %}
+
+        <br><br>
+        <h2>Use this site to maintain and organize your notes.</h2>
+
+        <br><br><br>
+        <div class="center size">
+            <b>Navigate to <a href="/notes"> my notes </a></b>
+        </div>
+
+
+
+    </body>
+</html>

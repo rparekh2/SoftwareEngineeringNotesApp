@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" class="newComment">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="UNCC Notes App">
+        <title>UNCC Notes App - New Comment</title>
+        <!-- styles -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    </head>
+    <body>
+		<header>
+			<h1> {{user}}'s PRAIR Notes!</h1>
+
+			<nav class="nav">
+				<!--  add navigation links -->
+				<a href="{{ url_for('index') }}"> Home</a> ||
+				<a href="{{ url_for('get_notes') }}"> My Notes</a> ||
+				<a href="{{ url_for('new_note') }}">Add Note</a> ||
+				<a href="{{ url_for('logout') }}">Logout</a>
+			</nav>
+		</header>
+
+		<form action="{{ url_for('update_comment', comment_id=comment.id) }}" method="post">
+
+        <p><label>Comment </label></p>
+		<p>
+			<textarea name="commentText"  rows="6" cols="0" >
+				{% if comment %}
+					{{comment.content}}
+				{% else %}
+					Add your new note here ...
+				{% endif %}
+
+			</textarea>
+		</p>
+		<p>
+			<input type="submit" value="Update Comment"/></p>
+		</p>
+        </form>
+    </body>
+</html>

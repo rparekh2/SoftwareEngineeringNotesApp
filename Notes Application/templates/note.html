@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" class="note">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="UNCC Notes App">
+        <title>UNCC Notes App - View your Note</title>
+        <!-- styles -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='forms.css') }}">
+    </head>
+    <body>
+        <header>
+            <h1> {{user}}'s PRAIR Notes! </h1>
+
+            <nav class="nav">
+                <a href="{{ url_for('index') }}"> Home</a> ||
+                <a href="{{ url_for('get_notes') }}"> My Notes</a> ||
+                <a href="{{ url_for('new_note') }}">Add Note</a> ||
+                <a href="{{ url_for('logout') }}">Logout</a>
+            </nav>
+        </header>
+
+        <h1 class="left font">Note Details</h1>
+
+        <table>
+            <tr>
+                <th>Title</th>
+                <td> &nbsp; </td><td> &nbsp; </td><td> &nbsp; </td><td> &nbsp; </td><td> &nbsp; </td>
+                <th>Text</th>
+                <td> &nbsp; </td><td> &nbsp; </td><td> &nbsp; </td><td> &nbsp; </td><td> &nbsp; </td>
+                <th>Date</th>
+            </tr>
+            <tr>
+                <td>{{ note.title }}</td>
+                <td> &nbsp; </td><td> &nbsp; </td><td> &nbsp; </td><td> &nbsp; </td><td> &nbsp; </td>
+                <td>{{ note.text }}</td>
+                <td> &nbsp; </td><td> &nbsp; </td><td> &nbsp; </td><td> &nbsp; </td><td> &nbsp; </td>
+                <td>{{ note.date }}</td>
+            </tr>
+        </table>
+
+        {% if note.comments %}
+        {% if note.comments|length > 0 %}
+        <td> &nbsp; </td><td> &nbsp; </td><td> &nbsp; </td>
+
+        <h2 class="left">Comments</h2>
+        <table class="commentBox">
+            {% for comment in note.comments %}
+            <tr>
+                <td>{{ comment.content }}</td>
+                <td> &nbsp; </td>
+                <td> &nbsp; </td>
+                <td>
+                    <form action="{{ url_for('update_comment', comment_id=comment.id) }}" method="get" class="none">
+                        <input type="submit" value="Edit">
+                    </form>
+                </td>
+                <td>
+                    <form action="{{ url_for('delete_comment', comment_id=comment.id) }}" method="post" class="none">
+                        <input type="submit" value="Delete">
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+        {% endif %}
+        <br><br><br><br>
+        <form action="{{ url_for('new_comment', note_id=note.id) }}" method="post" class="width">
+            <div class="formwrapper">
+                <h2 class="title">Add a comment</h2>
+                <div class="form-field">
+                    {{ form.comment.label }} <br/> {{ form.comment }}
+                </div>
+                {{ form.submit }}
+
+            </div>
+        </form>
+    </body>
+</html>

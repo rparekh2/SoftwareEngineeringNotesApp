@@ -1,0 +1,128 @@
+body {
+    padding: 30px 30px;
+}
+nav, .center{
+    text-align: center;
+}
+h1{
+    text-align: center;
+    font-family: "Segoe Print", Times, serif;
+    font-size: 48px;
+    color: #3d5a80;
+}
+h2{
+    text-align: center;
+    font-family: 'Muli', sans-serif;
+    color:#3d5a80;
+}
+label, th{
+    font-family: 'Muli', sans-serif;
+    font-size: 25px;
+    color: #3d5a80;
+}
+td{
+    font-family: 'Muli', sans-serif;
+    font-size: 15px;
+    color: #3d5a80;
+}
+p{
+    font-size: 15px;
+}
+
+.like {
+    background-color: orangered;
+}
+
+.button {
+    background-color: green;
+    color: white;
+}
+
+.index {
+    background-color: #E6D0DE;
+}
+
+.notes {
+    background-color: #FFE6CC;
+}
+
+.note {
+    background-color: #EEB49E;
+    /*CEDABF*/
+}
+
+.newNote {
+    background-color: #EFD1CD;
+}
+
+.register {
+    background-color: #AEC6CF;
+}
+
+.login {
+    background-color: #E1B894;
+}
+
+.newComment {
+    background-color: #DCCFC8;
+}
+
+.left {
+    text-align: left;
+}
+
+.commentBox {
+    background-color: #EACBBF;
+    height: 20px;
+    width: 370px;
+
+}
+
+.font {
+    font-family: "Muli", Times, serif;
+}
+
+/* navigation bar */
+.nav {
+    width: 100%;
+    background-color: #333333;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    text-align: center;
+    word-spacing: 30px;
+
+}
+
+/* navigation bar links */
+.nav a {
+    padding: 15px;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+}
+
+/* change background color when hovering over nav bar links */
+.nav a:hover {
+    background-color: #011638;
+}
+
+.noteButton {
+    background: #C185D3;
+    border: 0;
+    color: black;
+    border-radius: 2px;
+    margin-top: 15px;
+    font-weight: 400;
+    transition: all .3s ease-out;
+    margin: 15px 0px;
+    padding: 10px 13px;
+}
+
+.size {
+    font-size: 20pt;
+}
+
+.tableCenter {
+    margin-left: auto;
+    margin-right: auto;
+}

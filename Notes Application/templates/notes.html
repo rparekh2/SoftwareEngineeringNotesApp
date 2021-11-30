@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" class="notes">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="UNCC Notes App">
+        <title>UNCC Notes App - View your Notes</title>
+        <!-- styles -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    </head>
+    <body>
+        <header>
+            <h1> {{user}}'s PRAIR Notes!</h1>
+
+            <nav class="nav">
+                <a href="{{ url_for('index') }}"> Home</a> ||
+                <a href="{{ url_for('get_notes') }}"> My Notes</a> ||
+                <a href="{{ url_for('new_note') }}">Add Note</a> ||
+                <a href="{{ url_for('logout') }}">Logout</a>
+            </nav>
+        </header>
+
+        <h1 class="font">Listing notes</h1>
+        <br>
+        <form action="{{ url_for('search_notes') }}" method="post">
+            <div class="center">
+                <label for="search">Search Notes: </label>
+                <input type="text" name="search" id="search" size="15">
+                <input type="submit" value="Search">
+            </div>
+
+        </form>
+        <br><br>
+        <table class="tableCenter">
+            <tr>
+                <td>
+                    <form action="{{ url_for('sortTitle_notes') }}" method="post">
+                        <input type="submit" value="Sort by Title">
+                    </form>
+                </td>
+
+                <td> &nbsp; </td>
+                <td> &nbsp; </td>
+
+                <td>
+                    <form action="{{ url_for('sortDate_notes') }}" method="post">
+                        <input type="submit" value="Sort by Date/Time">
+                    </form>
+                </td>
+
+                <td> &nbsp; </td>
+                <td> &nbsp; </td>
+
+                <td>
+                    <form action="{{ url_for('get_notes') }}">
+                        <input type="submit" value="Unsort Notes">
+                    </form>
+                </td>
+            </tr>
+        </table>
+        <br><br>
+        <table class="tableCenter">
+            <tr>
+                <th>Title</th>
+                <td> &nbsp; </td>
+                <td> &nbsp; </td>
+                <th>Date</th>
+            </tr>
+            {% for note in notes %}
+
+            <tr>
+                <td><a href="{{ url_for('get_note', note_id=note.id) }}">{{note.title}}</a></td>
+
+                <td> &nbsp; </td>
+                <td> &nbsp; </td>
+
+                <td>{{ note.date }}</td>
+
+                <td> &nbsp; </td>
+                <td> &nbsp; </td>
+
+                <td><a href="{{url_for('update_note', note_id=note.id)}}">Edit</a></td>
+
+                <td> &nbsp; </td>
+                <td> &nbsp; </td>
+
+                <td>
+                    <form action="{{ url_for('delete_note', note_id=note.id) }}" method="post">
+                        <input type="submit" value="Delete">
+                    </form>
+                </td>
+
+                <td> &nbsp; </td>
+                <td> &nbsp; </td>
+
+                <td>
+                    <button type="button" id="like" class="default button">Like?</button>
+                </td>
+
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+    <script src="{{ url_for('static', filename='features.js') }}"></script>
+</html>
